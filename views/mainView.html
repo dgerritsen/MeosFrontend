@@ -1,0 +1,9 @@
+<ul>
+	<li ng-repeat="person in mainCtrl.persons" ng-bind="person.display_name"></li>
+</ul>
+
+<input type="text" placeholder="AAAAVJJMMDD" ng-model="mainCtrl.keno" />
+<br/>
+<ul>
+	<li ng-repeat="person in mainCtrl.persons | filter:mainCtrl.keno" ng-bind="person.display_name"></li>
+</ul>
