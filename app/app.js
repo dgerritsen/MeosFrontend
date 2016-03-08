@@ -1,33 +1,73 @@
-var app = angular.module('meosApp', ['ngRoute', 'restangular'])
+var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router'])
     .value('apiUrl', 'https://cryptic-sands-23820.herokuapp.com/')
     .service('mainService', function(apiUrl) {
             var self = this;
             return apiUrl;
     })
-    .config(function($routeProvider) {
 
-        var resolveProjects = {
-            projects: function (mainService) {
-                return mainService;
-            }
-        };
+    .service('prevState', function($rootScope) {
+        $rootScope.$on('$stateChangeSuccess',
+            function(ev, to, toParams, from, fromParams){
+                console.log(from);
+            })
+    })
 
-        $routeProvider
-                .when('/', {
-                    controller: 'mainController as mainCtrl',
-                    templateUrl: 'views/mainView.html',
-                    resolve: resolveProjects
-                })
-                .when('/test', {
-                    controller: 'mainController as mainCtrl',
-                    templateUrl: 'views/testView.html',
-                    resolve: resolveProjects
-                })
-                .otherwise({
-                    redirectTo: '/'
-                });
+    .config(function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise("/");
+        $stateProvider
+            .state('main', {
+                url: "/",
+                views: {
+                    "content": { templateUrl: "views/mainView.html", controller: 'mainController as mainCtrl' }
+                }
+            })
+            .state('persons', {
+                url: "/persons",
+                views: {
+                    "content": { templateUrl: "views/personView.html", controller: 'personController as resultsCtrl' },
+                    "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' }
+                }
+            })
+            .state('search', {
+                url: "/search",
+                views: {
+                    "content": { templateUrl: "views/searchView.html", controller: 'searchController as searchCtrl' },
+                    "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' }
+                }
+            })
+            .state('search.document', {
+                url: "/document",
+                views: {
+                    "search": { templateUrl: "views/search/document.html", controller: 'searchController as searchCtrl' },
+                    "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' }
+                }
+            })
+            .state('search.name', {
+                url: "/name",
+                views: {
+                    "search": { templateUrl: "views/search/name.html", controller: 'searchController as searchCtrl' },
+                    "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' }
+                }
+            })
+            .state('results', {
+                url: "/results",
+                views: {
+                    "content": { templateUrl: "views/resultsView.html", controller: 'resultsController as resultsCtrl' },
+                    "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
+                }
+            });
     });
-
 angular.module('meosApp').config(function(RestangularProvider){
    RestangularProvider.setBaseUrl('http://cryptic-sands-23820.herokuapp.com/');
 });
+
+app.run(function($rootScope) {
+    $rootScope.$on('$stateChangeSuccess',
+        function(ev, to, toParams, from, fromParams){
+            if(from.name == "") {
+                $rootScope.prevState = false;
+            }
+            $rootScope.prevState = from;
+        });
+});
+

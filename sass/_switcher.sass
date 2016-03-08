@@ -1,0 +1,23 @@
+.switchbar
+  display: flex
+  height: 40px
+  border-top: 1px solid #000
+  border-bottom: 1px solid #000
+  .item
+    flex-grow: 1
+    background: #222
+    text-align: center
+    line-height: 40px
+    &.active
+      background: $button-primary
+
+.info
+  background: #eeeeef
+  border: 1px solid #d6d6d6
+  text-align: center
+  font-weight: normal
+  font-size: 16px
+  padding: 5px
+
+  &.warning
+    color: #ce3131

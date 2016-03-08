@@ -3,14 +3,4 @@ angular.module('meosApp')
             var mainCtrl = this;
             mainCtrl.keno = '';
             mainCtrl.persons = Restangular.all('persons').getList().$object;
-
-            function searchKeno(keno) {
-
-            }
-
-            $scope.$watch(function() {
-                return mainCtrl.keno;
-            }, function(value) {
-                searchKeno(value);
-            })
     });

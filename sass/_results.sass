@@ -1,0 +1,127 @@
+.resultswrapper
+  min-height: 581px
+  background: #fafafa
+
+.searchresults
+  display: block
+  background: #fff
+  padding-top: 2px
+  ul
+    list-style-type: none
+    padding: 0
+    margin: 0
+  li
+    position: relative
+    background: #ebebeb
+    border-bottom: 1px solid #d6d6d6
+    color: #454545
+    padding-left: 40px
+    &:nth-child(2n)
+      background: #fff
+    &:first-child
+      border-top: 1px solid #d6d6d6
+
+    .name
+      font-weight: 700
+      font-size: 20px
+    .birth, .bsn
+      font-weight: 500
+      font-size: 12px
+
+    .bottom_row
+      display: block
+      .dangerclasses
+        display: inline-block
+        width: 180px
+        height: 30px
+        padding: 10px 0 0 0
+        .class
+          height: 20px
+          width: 20px
+          background-size: 20px
+          background-repeat: no-repeat
+          display: inline-block
+          &.armed
+            background-image: $icon_armed
+          &.resistance
+            background-image: $icon_resistance
+
+      .register
+        display: inline-block
+        width: 180px
+        text-align: right
+        font-weight: bold
+        font-size: 14px
+        vertical-align: top
+
+    &:before
+      content: " "
+      position: absolute
+      background: $icon_person-small
+      background-size: 14px
+      top: 10px
+      left: 8px
+      height: 14px
+      width: 14px
+
+
+    &.danger
+      box-shadow: 30px 0 0 0 #ce3131 inset
+      &:before
+        background-image: $icon_person-small-white
+      &:after
+        content: " "
+        position: absolute
+        background: $icon_exclamation-small
+        -webkit-background-size: 14px
+        background-size: 20px
+        top: 30px
+        left: 5px
+        height: 20px
+        width: 20px
+
+.results
+  dl
+    width: 100%
+    padding: 0
+    margin: 0
+  dt, dd
+    display: inline-block
+    margin: 0
+    padding: 0
+    vertical-align: top
+  dt
+    width: 37%
+    margin-right: 10px
+    word-break: break-all
+    overflow: hidden
+    white-space: nowrap
+    -ms-text-overflow: ellipsis
+    text-overflow: ellipsis
+  dd
+    width: 59%
+    font-weight: bold
+
+  .result_block
+    margin-top: 3px
+    .block_head
+      position: relative
+      background: #3c8fd0
+      border: 1px solid #003e63
+      color: #fff
+      padding: 3px 0
+      font-weight: bold
+      &:after, &:before
+        content: " "
+        position: absolute
+      &:after
+        border-bottom: 3px solid #fff
+        border-left: 3px solid #fff
+        height: 6px
+        width: 6px
+        transform: rotateZ(-45deg)
+        right: 10px
+        top: 6px
+    &.open .block_head:after
+      transform: rotateZ(135deg)
+      top: 10px

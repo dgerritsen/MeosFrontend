@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var bower = require('gulp-bower');
 var sass = require('gulp-sass');
+var es = require('event-stream');
+var inject = require('gulp-inject');
 
 var paths = {};
 

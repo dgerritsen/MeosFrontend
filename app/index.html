@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" ng-app="meosApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular</title>
+
+	<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script src="../bower_components/angular-route/angular-route.min.js"></script>
+	<script src="../bower_components/lodash/lodash.js"></script>
+	<script src="../bower_components/restangular/dist/restangular.min.js"></script>
+	<script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+	<script src="app.js"></script>
+	<script src="controllers/mainController.js"></script>
+	<script src="controllers/personController.js"></script>
+	<script src="controllers/searchController.js"></script>
+	<script src="controllers/resultsController.js"></script>
+	<script src="controllers/footerController.js"></script>
+
+	<link rel="stylesheet" href="../css/style.css"/>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no" />
+
+</head>
+<body ontouchmove="event.preventDefault();">
+	<div class="wrapper">
+		<header>
+			<a ui-sref="main"><div class="home">Meos</div></a>
+		</header>
+		<div ui-view="content"></div>
+		<div ui-view="footer"></div>
+	</div>
+</body>
+</html>
