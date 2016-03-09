@@ -1,23 +1,8 @@
 <div class="resultswrapper">
 	<div class="switchbar">
-		<div class="item">Persoon</div>
-		<div class="item active">IB (<span ng-bind="resultsCtrl.persons.length"></span>)</div>
+		<div class="item" ui-sref-active="active" ui-sref="results.person">Persoon</div>
+		<div class="item" ng-show="selectedPerson" ui-sref-active="active" ui-sref="results.id">ID</div>
+		<div class="item" ui-sref-active="active" ui-sref="results.ib">IB <span ng-show="resultsCtrl.persons">(<span ng-bind="resultsCtrl.persons.length"></span>)</span></div>
 	</div>
-	<div class="info warning">
-		Trefferinfo X en Meldingen (<span ng-bind="resultsCtrl.persons.length"></span>)
-	</div>
-	<div class="searchresults">
-		<ul>
-			<li ng-repeat="person in resultsCtrl.persons | filter: resultsCtrl.keno">
-				<div class="name" ng-bind="person.display_name"></div>
-				<div class="birth">Geboren: {{ person.birth_date | date:'dd-MM-yyyy' }} te {{ person.birth_city }} ({{ person.birth_country }})</div>
-				<div class="bsn">Burgerservicenummer: {{}}</div>
-				<div class="bottom_row">
-					<div class="dangerclasses">
-					</div>
-					<div class="register">GBA</div>
-				</div>
-			</li>
-		</ul>
-	</div>
+	<div ui-view="display"></div>
 </div>

@@ -3,14 +3,13 @@ angular.module('meosApp')
             var searchCtrl = this;
 
             searchCtrl.search = function() {
-                console.log('test');
-                $state.go('results');
+                $rootScope.savedSearchResults = undefined;
+                $state.go('results.ib');
             };
 
             $scope.$watch(angular.bind(this, function() {
                 return this.keno;
             }), function(newVal) {
                 $rootScope.keno = newVal;
-                console.log('Keno: ', newVal);
             })
     });

@@ -81,6 +81,7 @@
         width: 20px
 
 .results
+  color: #454545
   dl
     width: 100%
     padding: 0
@@ -98,6 +99,7 @@
     white-space: nowrap
     -ms-text-overflow: ellipsis
     text-overflow: ellipsis
+    padding-left: 5px
   dd
     width: 59%
     font-weight: bold
@@ -111,6 +113,11 @@
       color: #fff
       padding: 3px 0
       font-weight: bold
+      &.toplevel
+        background: #2e6b9c
+        padding: 6px 0
+        &:after
+          top: 9px
       &:after, &:before
         content: " "
         position: absolute

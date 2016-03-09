@@ -1,9 +1,30 @@
 angular.module('meosApp')
-    .controller('resultsController', function($rootScope, $scope, $filter, Restangular) {
+    .controller('resultsController', function($rootScope, $scope, $state, $filter, Restangular) {
             var resultsCtrl = this;
-            if($rootScope.keno) {
-                console.log('Keno found!', $rootScope.keno);
-                resultsCtrl.keno = $rootScope.keno;
-                resultsCtrl.persons = Restangular.all('persons').getList().$object;
+            var selectedPerson = $rootScope.selectedPerson;
+            if(!$rootScope.savedSearchResults) {
+                resultsCtrl.loaded = false;
+
+                if($rootScope.keno) {
+                    Restangular.all('persons').getList().then(function(persons) {
+                        resultsCtrl.persons = [];
+                        _.forEach(persons, function(value) {
+                            if(_.startsWith(value.keno, $rootScope.keno)) {
+                                resultsCtrl.persons[resultsCtrl.persons.length] = value;
+                            }
+                        });
+
+                        $rootScope.savedSearchResults = resultsCtrl.persons;
+                        resultsCtrl.loaded = true;
+                    });
+                }
+            } else {
+                resultsCtrl.persons = $rootScope.savedSearchResults;
+                resultsCtrl.loaded = true;
+            }
+
+            resultsCtrl.select = function(person) {
+                $rootScope.selectedPerson = person;
+                $state.go('results.person');
             }
     });

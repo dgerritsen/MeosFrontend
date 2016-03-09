@@ -50,11 +50,32 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router'])
                 }
             })
             .state('results', {
-                url: "/results",
-                views: {
-                    "content": { templateUrl: "views/resultsView.html", controller: 'resultsController as resultsCtrl' },
-                    "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
-                }
+                    url: "/results",
+                    views: {
+                        "content": { templateUrl: "views/resultsView.html", controller: 'resultsController as resultsCtrl' },
+                        "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
+                    }
+            })
+            .state('results.ib', {
+                    url: "/ib",
+                    views: {
+                        "display": { templateUrl: "views/partials/_ib.html", controller: 'resultsController as resultsCtrl' },
+                        "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
+                    }
+            })
+            .state('results.id', {
+                    url: "/id",
+                    views: {
+                        "display": { templateUrl: "views/partials/_id.html", controller: 'singlePersonController as singlePersonCtrl' },
+                        "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
+                    }
+            })
+            .state('results.person', {
+                    url: "/person",
+                    views: {
+                        "display": { templateUrl: "views/partials/_person.html", controller: 'singlePersonController as singlePersonCtrl' },
+                        "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
+                    }
             });
     });
 angular.module('meosApp').config(function(RestangularProvider){

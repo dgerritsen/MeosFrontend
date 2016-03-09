@@ -17,6 +17,6 @@
 			</label>
 		</div>
 		<input type="reset" value="Wissen" />
-		<input type="submit" ng-click="searchCtrl.search()" value="Zoeken" />
+		<input type="submit" ng-disabled="searchCtrl.keno.length < 7 || !searchCtrl.keno" ng-click="searchCtrl.search()" value="Zoeken" />
 	</form>
 </div>
