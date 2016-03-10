@@ -49,6 +49,29 @@ header
   text-transform: uppercase
   font-weight: bold
 
+.iphone-small
+  .content, .resultswrapper
+    height: 413px
+    min-height: auto
+  .wrapper .menu
+    height: 413px
+    min-height: auto
+    div
+      height: 138px
+      padding: 80px 20px 30px 50px
+      &.fingerprint, &.passport
+        display: none
+
+.android
+  .content, .resultswrapper
+    height: 485px
+    min-height: auto
+  .wrapper .menu
+    height: 485px
+    min-height: auto
+    div
+      height: 121px
+      padding: 80px 20px 30px 50px
 
 .wrapper
   width: 100%
@@ -72,6 +95,7 @@ header
       font-size: 14px
       background-repeat: no-repeat
       background-position: calc(50% + 20px) 20px
+      vertical-align: top
       &:after
         display: block
         content: ' '

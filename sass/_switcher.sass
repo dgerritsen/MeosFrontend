@@ -8,8 +8,31 @@
     background: #222
     text-align: center
     line-height: 40px
+    position: relative
+    overflow: hidden
     &.active
       background: $button-primary
+    &.alert
+      &:before
+        content: " "
+        position: absolute
+        width: 20px
+        height: 10px
+        background: $icon_exclamation-small
+        background-size: 10px
+        background-repeat: no-repeat
+        top: 3px
+        right: -7px
+        z-index: 2
+      &:after
+        content: " "
+        position: absolute
+        height: 40px
+        width: 40px
+        background: #ce3131
+        transform: rotate(45deg)
+        top: -20px
+        right: -20px
 
 .info
   background: #eeeeef

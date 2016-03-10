@@ -2,7 +2,7 @@
 <html lang="en" ng-app="meosApp">
 <head>
 	<meta charset="UTF-8">
-	<title>Angular</title>
+	<title>MEOS</title>
 
 	<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="../bower_components/angular/angular.min.js"></script>
@@ -14,6 +14,7 @@
 	<script src="app.js"></script>
 	<script src="controllers/mainController.js"></script>
 	<script src="controllers/personController.js"></script>
+	<script src="controllers/vehicleController.js"></script>
 	<script src="controllers/searchController.js"></script>
 	<script src="controllers/resultsController.js"></script>
 	<script src="controllers/singlePersonController.js"></script>
@@ -23,8 +24,6 @@
 
 	<script src="filters/gender.js"></script>
 
-
-
 	<link rel="stylesheet" href="../css/style.css"/>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -32,7 +31,7 @@
 	<meta name="format-detection" content="telephone=no" />
 
 </head>
-<body ontouchmove="event.preventDefault();">
+<body>
 	<div class="wrapper">
 		<header>
 			<a ui-sref="main"><div class="home">Meos</div></a>

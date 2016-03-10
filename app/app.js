@@ -28,6 +28,13 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router'])
                     "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' }
                 }
             })
+            .state('vehicles', {
+                url: "/vehicles",
+                views: {
+                    "content": { templateUrl: "views/vehicleView.html", controller: 'vehicleController as vehicleCtrl' },
+                    "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' }
+                }
+            })
             .state('search', {
                 url: "/search",
                 views: {
@@ -46,6 +53,13 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router'])
                 url: "/name",
                 views: {
                     "search": { templateUrl: "views/search/name.html", controller: 'searchController as searchCtrl' },
+                    "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' }
+                }
+            })
+            .state('search.license', {
+                url: "/license",
+                views: {
+                    "search": { templateUrl: "views/search/license.html", controller: 'vehicleController as vehicleCtrl' },
                     "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' }
                 }
             })
@@ -76,6 +90,27 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router'])
                         "display": { templateUrl: "views/partials/_person.html", controller: 'singlePersonController as singlePersonCtrl' },
                         "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
                     }
+            })
+            .state('results.vehicle', {
+                    url: "/vehicle",
+                    views: {
+                        "display": { templateUrl: "views/partials/_vehicle.html", controller: 'singleVehicleController as singleVehicleCtrl' },
+                        "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
+                    }
+            })
+            .state('resultsVehicle', {
+                    url: "/resultsvehicle",
+                    views: {
+                        "content": { templateUrl: "views/resultsVehicleView.html", controller: 'resultsVehicleController as resultsVehicleCtrl' },
+                        "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
+                    }
+            })
+            .state('resultsVehicle.ib', {
+                    url: "/ib",
+                    views: {
+                        "display": { templateUrl: "views/partials/_ib-vehicle.html", controller: 'resultsVehicleController as resultsVehicleCtrl' },
+                        "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
+                    }
             });
     });
 angular.module('meosApp').config(function(RestangularProvider){
@@ -90,5 +125,40 @@ app.run(function($rootScope) {
             }
             $rootScope.prevState = from;
         });
+});
+
+function getMobileOS() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  console.log(userAgent);
+
+  if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ) )
+  {
+    return 'iOS';
+
+  }
+  else if( userAgent.match( /Android/i ) )
+  {
+
+    return 'Android';
+  }
+  else
+  {
+    return 'unknown';
+  }
+}
+
+$(function() {
+    if(getMobileOS() == 'Android') {
+        console.log('Android detected');
+        $('body').addClass('android');
+    }
+    if(getMobileOS() == 'iOS') {
+        console.log($(window).width());
+        if($(window).width() < 325) {
+            console.log('Iphone small detected');
+            console.log($('body'));
+            $('body').addClass('iphone-small');
+        }
+    }
 });
 

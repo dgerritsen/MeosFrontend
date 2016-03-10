@@ -8,9 +8,14 @@ angular.module('meosApp')
                 if($rootScope.keno) {
                     Restangular.all('persons').getList().then(function(persons) {
                         resultsCtrl.persons = [];
+                        resultsCtrl.signals = [];
                         _.forEach(persons, function(value) {
-                            if(_.startsWith(value.keno, $rootScope.keno)) {
+                            var clean_value = _.toLower(_.trim(value.keno));
+                            if(_.startsWith(clean_value, $rootScope.keno)) {
                                 resultsCtrl.persons[resultsCtrl.persons.length] = value;
+                                if(value.signals.length > 0) {
+                                    resultsCtrl.personAlert = true;
+                                }
                             }
                         });
 

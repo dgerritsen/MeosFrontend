@@ -39,6 +39,40 @@
 		</flapout>
 	</flapout>
 
+	<flapout ng-show="singlePersonCtrl.person.signals.length > 0" toplevel="true" title="'OPS - ' + singlePersonCtrl.person.display_name">
+		<dl>
+			<dt>Identiteit</dt>
+			<dd>{{ singlePersonCtrl.person.display_name }}</dd>
+
+			<dt>Geboren</dt>
+			<dd>{{ singlePersonCtrl.person.birth_date | date:'dd-MM-yyyy' }} te {{ singlePersonCtrl.person.birth_place }} ({{ singlePersonCtrl.person.birth_country}})</dd>
+
+			<dt>Geslacht</dt>
+			<dd>{{ singlePersonCtrl.person.gender | gender }}</dd>
+
+			<dt>Burgerservicenummer</dt>
+			<dd>{{ singlePersonCtrl.person.bsn }}</dd>
+		</dl>
+		<flapout title="'Signalering'">
+			<dl ng-repeat="signal in singlePersonCtrl.person.signals">
+				<dt>Code</dt>
+				<dd>{{ signal.code }}</dd>
+
+				<dt>Omschrijving</dt>
+				<dd>{{ signal.status }}</dd>
+
+				<dt>Begindatum</dt>
+				<dd>{{ signal.start_date | date:'dd-MM-yyyy'}}</dd>
+
+				<dt>Aanmeldende organisatie</dt>
+				<dd>{{ signal.organization }}</dd>
+
+				<dt>Aanmelding Referentie</dt>
+				<dd>{{ signal.reference }}</dd>
+			</dl>
+		</flapout>
+	</flapout>
+
 	<flapout title="'RDW - ' + singlePersonCtrl.person.bsn" toplevel="true" ng-show="singlePersonCtrl.person.driverslicenses.length > 0">
 		<dl>
 			<dt>Identiteit</dt>

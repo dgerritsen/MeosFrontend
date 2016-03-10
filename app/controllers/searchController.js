@@ -1,6 +1,7 @@
 angular.module('meosApp')
     .controller('searchController', function($rootScope, $scope, $state) {
             var searchCtrl = this;
+            $rootScope.selectedPerson = undefined;
 
             searchCtrl.search = function() {
                 $rootScope.savedSearchResults = undefined;
