@@ -11,6 +11,6 @@ angular.module('meosApp')
             $scope.$watch(angular.bind(this, function() {
                 return this.keno;
             }), function(newVal) {
-                $rootScope.keno = newVal;
+                $rootScope.keno = _.toLower(_.trim(newVal));
             })
     });
