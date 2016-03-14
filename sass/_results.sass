@@ -37,16 +37,17 @@
         display: inline-block
         width: 180px
         height: 30px
-        padding: 10px 0 0 0
-        .class
+        padding: 5px 0 0 0
+        .class, div
           height: 20px
           width: 20px
           background-size: 20px
           background-repeat: no-repeat
           display: inline-block
-          &.armed
+          margin-right: 5px
+          &.danger-1
             background-image: $icon_armed
-          &.resistance
+          &.danger-5
             background-image: $icon_resistance
 
       .register
@@ -95,6 +96,9 @@
     margin: 0
     &:nth-child(2n)
       background: #ebebeb
+    &.registration
+      color: #ce3131
+
   dt, dd
     display: inline-block
     margin: 0

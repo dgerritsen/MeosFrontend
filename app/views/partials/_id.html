@@ -73,6 +73,49 @@
 		</flapout>
 	</flapout>
 
+	<flapout title="'BLUESPOT - ' + singlePersonCtrl.person.display_name" ng-if="singlePersonCtrl.person.registrations.length > 0">
+		<dl>
+			<dt>Identiteit</dt>
+			<dd>{{ singlePersonCtrl.person.display_name }}</dd>
+
+			<dt>Geboren</dt>
+			<dd>{{ singlePersonCtrl.person.birth_date | date:'dd-MM-yyyy' }} te {{ singlePersonCtrl.person.birth_place }} ({{ singlePersonCtrl.person.birth_country}})</dd>
+
+			<dt>Geslacht</dt>
+			<dd>{{ singlePersonCtrl.person.gender | gender }}</dd>
+
+			<dt>Aantal zaakregistraties</dt>
+			<dd>{{ singlePersonCtrl.person.registrations.length }}</dd>
+
+			<dt>Betreft alias</dt>
+			<dd>Nee</dd>
+		</dl>
+
+		<flapout title="'Registratie overzicht'">
+			<dl class="registration" ng-repeat="registration in singlePersonCtrl.person.registrations">
+				<dt>
+					<a target="_blank" ng-href="{{ registration.form }}">Details</a>
+				</dt>
+				<dd>
+					<br/>
+					{{ registration.title }}
+				</dd>
+
+				<dt>Maatschappelijke klasse</dt>
+				<dd>{{ registration.mk }}</dd>
+
+				<dt>Rol</dt>
+				<dd>{{ registration.role }}</dd>
+
+				<dt>Soort</dt>
+				<dd>{{ registration.type }}</dd>
+
+				<dt>Kennisname</dt>
+				<dd>{{ registration.date | date:'dd-MM-yyyy' }}</dd>
+			</dl>
+		</flapout>
+	</flapout>
+
 	<flapout title="'RDW - ' + singlePersonCtrl.person.bsn" toplevel="true" ng-show="singlePersonCtrl.person.driverslicenses.length > 0">
 		<dl>
 			<dt>Identiteit</dt>

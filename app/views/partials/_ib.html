@@ -12,9 +12,12 @@
 			<div class="bsn">Burgerservicenummer: {{ person.bsn }}</div>
 			<div class="bottom_row">
 				<div class="dangerclasses">
+					<div ng-repeat="danger in person.dangers">
+						<div class="class danger-{{ danger.code }}"></div>
+					</div>
 				</div>
 				<div class="register">
-					GBA<span ng-show="person.driverslicenses.length > 0">, RDW</span><span ng-repeat="signal in person.signals">, {{ signal.register }}</span>
+					GBA<span ng-show="person.registrations.length > 0">, BLUESPOT</span><span ng-show="person.driverslicenses.length > 0">, RDW</span><span ng-repeat="signal in person.signals">, {{ signal.register }}</span>
 				</div>
 			</div>
 		</li>
