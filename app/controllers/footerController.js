@@ -10,4 +10,12 @@ angular.module('meosApp')
                 }
             });
 
+            $rootScope.$watch('selectedVehicle', function() {
+                if($rootScope.selectedVehicle) {
+                    footerCtrl.vehicleActive = true;
+                } else {
+                    footerCtrl.vehicleActive = false;
+                }
+            });
+
     });

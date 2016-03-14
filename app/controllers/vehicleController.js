@@ -38,6 +38,6 @@ angular.module('meosApp')
 
             resultsVehicleCtrl.select = function(vehicle) {
                 $rootScope.selectedVehicle = vehicle;
-                $state.go('results.vehicle');
+                $state.go('resultsVehicle.vehicle');
             }
     });

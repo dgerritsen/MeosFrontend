@@ -91,17 +91,17 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router'])
                         "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
                     }
             })
-            .state('results.vehicle', {
-                    url: "/vehicle",
-                    views: {
-                        "display": { templateUrl: "views/partials/_vehicle.html", controller: 'singleVehicleController as singleVehicleCtrl' },
-                        "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
-                    }
-            })
             .state('resultsVehicle', {
                     url: "/resultsvehicle",
                     views: {
                         "content": { templateUrl: "views/resultsVehicleView.html", controller: 'resultsVehicleController as resultsVehicleCtrl' },
+                        "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
+                    }
+            })
+            .state('resultsVehicle.vehicle', {
+                    url: "/vehicle",
+                    views: {
+                        "display": { templateUrl: "views/partials/_vehicle.html", controller: 'singleVehicleController as singleVehicleCtrl' },
                         "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
                     }
             })
@@ -114,7 +114,7 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router'])
             });
     });
 angular.module('meosApp').config(function(RestangularProvider){
-   RestangularProvider.setBaseUrl('http://cryptic-sands-23820.herokuapp.com/');
+   RestangularProvider.setBaseUrl('http://meosprod.herokuapp.com/');
 });
 
 app.run(function($rootScope) {
