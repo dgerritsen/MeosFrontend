@@ -153,12 +153,7 @@ $(function() {
         $('body').addClass('android');
     }
     if(getMobileOS() == 'iOS') {
-        console.log($(window).width());
-        if($(window).width() < 325) {
-            console.log('Iphone small detected');
-            console.log($('body'));
-            $('body').addClass('iphone-small');
-        }
+        $('body').addClass('iphone');
     }
 });
 

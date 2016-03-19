@@ -6,7 +6,7 @@ angular.module('meosApp')
                 person: '=',
             },
             transclude: true,
-            templateUrl: 'directives/flapout.html',
+            templateUrl: 'views/directives/flapout.html',
             link: function(scope, el, attrs) {
                 if(attrs.toplevel) {
                     el.find('.block_head').addClass("toplevel");
