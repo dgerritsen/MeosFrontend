@@ -3,8 +3,6 @@ angular.module('meosApp')
             var footerCtrl = this;
             footerCtrl.prev = $rootScope.prevState.name;
 
-            console.log('Without: ', $state.current);
-
             switch($state.current.name) {
                 case "persons":
                 case "vehicles":
@@ -17,6 +15,7 @@ angular.module('meosApp')
                 break;
 
                 case "results.ib":
+                case "resultsVehicle.ib":
                     footerCtrl.prev = $rootScope.prevState.name;
                 break;
 

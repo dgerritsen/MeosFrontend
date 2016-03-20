@@ -2,5 +2,9 @@ angular.module('meosApp')
     .controller('mainController', function($scope, Restangular) {
             var mainCtrl = this;
             mainCtrl.keno = '';
-            mainCtrl.persons = Restangular.all('persons').getList().$object;
+            Restangular.all('persons').getList().then(function() {
+                // All ok!
+            }, function(response) {
+                console.log(response);
+            });
     });

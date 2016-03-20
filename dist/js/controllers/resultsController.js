@@ -1,5 +1,5 @@
 angular.module('meosApp')
-    .controller('resultsController', function($rootScope, $scope, $state, $filter, Restangular) {
+    .controller('resultsController', function($rootScope, $scope, $state, $filter, Restangular, localStorageService) {
             var resultsCtrl = this;
             var selectedPerson = $rootScope.selectedPerson;
             if(!$rootScope.savedSearchResults) {
@@ -20,8 +20,25 @@ angular.module('meosApp')
                         });
 
                         $rootScope.savedSearchResults = resultsCtrl.persons;
+
                         resultsCtrl.loaded = true;
                     });
+
+                    var addToHistory = {
+                        type: 'Kenosleutel',
+                        icon: 'searchable',
+                        category: 'person',
+                        datetime: new Date(),
+                        string: $rootScope.keno
+                    };
+
+                    var history = localStorageService.get('history');
+                    if(history) {
+                        history = _.concat(history, addToHistory);
+                        localStorageService.set('history', history);
+                    } else {
+                        localStorageService.set('history', [addToHistory]);
+                    }
                 }
             } else {
                 resultsCtrl.persons = $rootScope.savedSearchResults;

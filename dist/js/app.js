@@ -1,4 +1,4 @@
-var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router'])
+var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router', 'LocalStorageModule'])
     .value('apiUrl', 'https://cryptic-sands-23820.herokuapp.com/')
     .service('mainService', function(apiUrl) {
             var self = this;
@@ -66,7 +66,7 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router'])
             .state('results', {
                     url: "/results",
                     views: {
-                        "content": { templateUrl: "views/resultsView.html", controller: 'resultsController as resultsCtrl' },
+                        "content": { templateUrl: "views/resultsView.html" },
                         "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
                     }
             })
@@ -94,7 +94,7 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router'])
             .state('resultsVehicle', {
                     url: "/resultsvehicle",
                     views: {
-                        "content": { templateUrl: "views/resultsVehicleView.html", controller: 'resultsVehicleController as resultsVehicleCtrl' },
+                        "content": { templateUrl: "views/resultsVehicleView.html" },
                         "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
                     }
             })
@@ -109,6 +109,13 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router'])
                     url: "/ib",
                     views: {
                         "display": { templateUrl: "views/partials/_ib-vehicle.html", controller: 'resultsVehicleController as resultsVehicleCtrl' },
+                        "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
+                    }
+            })
+            .state('history', {
+                    url: "/history",
+                    views: {
+                        "content": { templateUrl: "views/historyView.html", controller: 'historyController as historyCtrl' },
                         "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
                     }
             });

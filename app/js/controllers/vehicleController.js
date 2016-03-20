@@ -8,7 +8,7 @@ angular.module('meosApp')
                 $state.go('resultsVehicle.ib');
             };
     })
-    .controller('resultsVehicleController', function($rootScope, $state, Restangular) {
+    .controller('resultsVehicleController', function($rootScope, $state, Restangular, localStorageService) {
             var resultsVehicleCtrl = this;
 
             if(!$rootScope.savedVehicle) {
@@ -30,6 +30,22 @@ angular.module('meosApp')
                         $rootScope.savedVehicle = resultsVehicleCtrl.vehicle;
                         resultsVehicleCtrl.loaded = true;
                     });
+
+                    var addToHistory = {
+                        type: 'Kenteken',
+                        icon: 'searchable',
+                        category: 'vehicle',
+                        datetime: new Date(),
+                        string: $rootScope.license
+                    };
+
+                    var history = localStorageService.get('history');
+                    if(history) {
+                        history = _.concat(history, addToHistory);
+                        localStorageService.set('history', history);
+                    } else {
+                        localStorageService.set('history', [addToHistory]);
+                    }
                 }
             } else {
                 resultsVehicleCtrl.vehicle = $rootScope.savedVehicle;

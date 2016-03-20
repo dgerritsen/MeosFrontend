@@ -1,9 +1,7 @@
 .resultswrapper
-  min-height: 581px
+  height: 100%
+  overflow: scroll
   background: #fafafa
-
-.android .searchresults li .bottom_row .dangerclasses
-  width: 120px
 
 .searchresults
   display: block
@@ -33,9 +31,11 @@
 
     .bottom_row
       display: block
+      margin-top: 5px
+      padding-right: 5%
       .dangerclasses
         display: inline-block
-        width: 180px
+        width: 34%
         height: 30px
         padding: 5px 0 0 0
         .class, div
@@ -52,7 +52,7 @@
 
       .register
         display: inline-block
-        width: 180px
+        width: 64%
         text-align: right
         font-weight: bold
         font-size: 14px
@@ -90,7 +90,6 @@
       background-size: 14px
 .results
   color: #454545
-  max-height: calc(100vh - 190px)
   overflow: scroll
   dl
     width: 100%
@@ -107,8 +106,7 @@
     padding: 0
     vertical-align: top
   dt
-    width: 37%
-    margin-right: 10px
+    width: 40%
     word-break: break-all
     overflow: hidden
     white-space: nowrap
@@ -116,8 +114,9 @@
     text-overflow: ellipsis
     padding-left: 5px
   dd
-    width: 59%
+    width: 58%
     font-weight: bold
+    padding-left: 10px
 
   .result_block
     margin-top: 3px

@@ -60,34 +60,24 @@ header
   text-transform: uppercase
   font-weight: bold
 
-.android
-  .content, .resultswrapper
-    height: 485px
-    min-height: auto
-  .wrapper .menu
-    height: 485px
-    min-height: auto
-    div
-      height: 121px
-      padding: 80px 20px 30px 50px
-      background-position: calc(50% + 20px) 10px
-
 .iphone
   height: 100vh
   overflow: hidden
   .wrapper
-    .menu
+    .content
       height: calc(100vh - (20px + #{$header-height + $footer-height}))
-      div
-        height: calc((100vh - (20px + #{$header-height + $footer-height})) / 4)
+    .menu .block
+      height: calc((100vh - (20px + #{$header-height + $footer-height})) / 4)
 
 .wrapper
   width: 100%
   background: #0e4b9d
+  .content
+    height: $available-space
+    overflow: auto
   .menu
     font-size: 0
-    height: $available-space
-    div
+    .block
       box-sizing: border-box
       position: relative
       display: inline-block
@@ -152,8 +142,10 @@ header
       &.phone
         background-image: $icon_phone
 
-.content
-  min-height: 581px
+.search-content
+  // Look into this
+  height: 100%
+  overflow: scroll
   background: #fafafa
   color: #000
   padding: 10px
@@ -162,3 +154,4 @@ header
 @import form
 @import results
 @import switcher
+@import history
