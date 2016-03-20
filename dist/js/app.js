@@ -63,6 +63,13 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router', 'Loc
                     "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' }
                 }
             })
+            .state('search.licensescan', {
+                url: "/licensescan",
+                views: {
+                    "search": { templateUrl: "views/search/licenseScan.html", controller: 'vehicleController as vehicleCtrl' },
+                    "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' }
+                }
+            })
             .state('results', {
                     url: "/results",
                     views: {
@@ -123,7 +130,7 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router', 'Loc
 angular.module('meosApp').config(function(RestangularProvider){
     RestangularProvider.setBaseUrl('https://meosprod.herokuapp.com/');
     RestangularProvider.setRequestSuffix('/');
-
+    RestangularProvider.setDefaultHttpFields({cache: true});
 });
 
 app.run(function($state, Restangular, localStorageService) {
