@@ -1,6 +1,16 @@
 angular.module('meosApp')
-    .controller('mainController', function($scope, Restangular) {
+    .controller('mainController', function($scope, $state, Restangular, localStorageService) {
             var mainCtrl = this;
             mainCtrl.keno = '';
-            mainCtrl.persons = Restangular.all('persons').getList().$object;
+            Restangular.all('persons').getList().then(function() {
+                // All ok!
+            }, function(response) {
+                if(response.status == 401 || response.status == 403) {
+                    if(!localStorageService.get('token')) {
+                        $state.go('login');
+                    } else {
+
+                    }
+                }
+            });
     });

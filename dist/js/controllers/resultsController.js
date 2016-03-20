@@ -39,6 +39,10 @@ angular.module('meosApp')
                     } else {
                         localStorageService.set('history', [addToHistory]);
                     }
+
+                    if(history.length > 20) {
+                        localStorageService.set('history', _.drop(history, 5));
+                    }
                 }
             } else {
                 resultsCtrl.persons = $rootScope.savedSearchResults;

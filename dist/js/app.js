@@ -1,10 +1,4 @@
 var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router', 'LocalStorageModule'])
-    .value('apiUrl', 'https://cryptic-sands-23820.herokuapp.com/')
-    .service('mainService', function(apiUrl) {
-            var self = this;
-            return apiUrl;
-    })
-
     .service('prevState', function($rootScope) {
         $rootScope.$on('$stateChangeSuccess',
             function(ev, to, toParams, from, fromParams){
@@ -19,6 +13,12 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router', 'Loc
                 url: "/",
                 views: {
                     "content": { templateUrl: "views/mainView.html", controller: 'mainController as mainCtrl' }
+                }
+            })
+            .state('login', {
+                url: "/login",
+                views: {
+                    "content": { templateUrl: "views/loginView.html", controller: 'authController as authCtrl' }
                 }
             })
             .state('persons', {
@@ -121,7 +121,28 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router', 'Loc
             });
     });
 angular.module('meosApp').config(function(RestangularProvider){
-   RestangularProvider.setBaseUrl('http://meosprod.herokuapp.com/');
+    RestangularProvider.setBaseUrl('https://meosprod.herokuapp.com/');
+    RestangularProvider.setRequestSuffix('/');
+
+});
+
+app.run(function($state, Restangular, localStorageService) {
+    Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
+
+        if(response.status === 401) {
+
+            if(localStorageService.get('token')) {
+                Restangular.setDefaultHeaders({ Authorization: 'Token ' + localStorageService.get('token') });
+                return false;
+            } else {
+                $state.go('login');
+                return true;
+            }
+
+        }
+
+        return true; // error not handled
+    });
 });
 
 app.run(function($rootScope) {

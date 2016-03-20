@@ -3,9 +3,10 @@ angular.module('meosApp')
             var historyCtrl = this;
 
             historyCtrl.history = localStorageService.get('history');
-            console.log(historyCtrl.history);
 
             historyCtrl.search = function(obj) {
+                console.log(obj);
+
                 if(obj.category == 'person') {
 
                     if(obj.type = 'Kenosleutel') {
