@@ -14,12 +14,17 @@ angular.module('meosApp')
                             if(_.startsWith(clean_value, $rootScope.keno)) {
                                 resultsCtrl.persons[resultsCtrl.persons.length] = value;
                                 if(value.signals.length > 0) {
-                                    resultsCtrl.personAlert = true;
+                                    $rootScope.personAlert = true;
+                                    value.hasDanger = true;
+                                }
+                                if(value.dangers.length > 0) {
+                                    $rootScope.personAlert = true;
                                 }
                             }
                         });
-
                         $rootScope.savedSearchResults = resultsCtrl.persons;
+
+                        console.log('resultsCtrl.personAlert', resultsCtrl.personAlert);
 
                         resultsCtrl.loaded = true;
                     });
@@ -54,3 +59,12 @@ angular.module('meosApp')
                 $state.go('results.person');
             }
     });
+
+angular.module('meosApp')
+    .controller('resultsMainController', function($rootScope) {
+            var resultsMainCtrl = this;
+            $rootScope.$watch('personAlert', function(newValue) {
+                resultsMainCtrl.personAlert = newValue;
+                console.log(newValue);
+            });
+        });

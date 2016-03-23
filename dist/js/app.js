@@ -73,7 +73,7 @@ var app = angular.module('meosApp', ['ngRoute', 'restangular', 'ui.router', 'Loc
             .state('results', {
                     url: "/results",
                     views: {
-                        "content": { templateUrl: "views/resultsView.html" },
+                        "content": { templateUrl: "views/resultsView.html", controller: 'resultsMainController as resultsMainCtrl' },
                         "footer": { templateUrl: "views/footerView.html", controller: 'footerController as footerCtrl' },
                     }
             })

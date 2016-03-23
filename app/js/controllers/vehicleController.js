@@ -78,7 +78,9 @@ angular.module('meosApp')
                         resultsVehicleCtrl.vehicles = [];
                         resultsVehicleCtrl.signals = [];
                         _.forEach(vehicles, function(value) {
-                            if(_.startsWith(value.license, $rootScope.license)) {
+                            var cleansearch = _.toLower(_.trim(value.license));
+                            var cleanroot = _.toLower(_.trim($rootScope.license));
+                            if(_.startsWith(cleansearch, cleanroot)) {
                                 resultsVehicleCtrl.vehicles[resultsVehicleCtrl.vehicles.length] = value;
                                 if(value.signals.length > 0) {
                                     resultsVehicleCtrl.personAlert = true;
